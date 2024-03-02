@@ -26,13 +26,38 @@ class Node(Generic[T]):
 
     __repr__ = __str__
 
-
 class Graph:
     def __init__(self, root: Node) -> None:
         self._root = root
 
+
     def dfs(self) -> list[Node]:
-        raise NotImplementedError
+        complete = set()
+        sp = []
+        def dfs1(node : Node) -> None:
+            if node in complete:
+                return
+            complete.add(node)
+            sp.append(node)
+            for next in node.outbound:
+                dfs1(next)
+        dfs1(self._root)
+        return sp
+
+
 
     def bfs(self) -> list[Node]:
-        raise NotImplementedError
+        complete = set()
+        sp = []
+        queue = [self._root]
+        while queue:
+            node = queue.pop(0)
+            if node in complete:
+                continue
+            complete.add(node)
+            sp.append(node)
+            for next in node.outbound:
+                if next not in complete:
+                    queue.append(next)
+        return sp
+
