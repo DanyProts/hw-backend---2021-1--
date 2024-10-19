@@ -1,3 +1,5 @@
+__all__ = ("is_prime",)
+
 def is_prime(n):
     a=[]
     if n==0 or n==1:

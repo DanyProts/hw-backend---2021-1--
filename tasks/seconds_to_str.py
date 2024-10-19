@@ -1,3 +1,4 @@
+__all__ = ("seconds_to_str",)
 def seconds_to_str(n):
     secstr = int(n)
     data = ''
